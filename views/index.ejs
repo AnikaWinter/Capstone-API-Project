@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capstone API</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>History Event Finder</h1>
+    <h2>Choose month and date: </h1>
+    <form class="IBM-plex-serif" id="myForm" method="post">
+        <label for="monthInput">Month:</label> 
+        <select class="form-margin IBM-plex-serif-options" name="month" id="monthInput">
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+
+        <label for="dayInput">Day (1-31):</label>
+        <input class="form-margin IBM-plex-serif-options" type="number" id="dayInput" name="day" min="1" max="31">
+
+        <label for="submit">Type of search:</label>
+        <input class="IBM-plex-serif-options" id="event" type="submit" value="Events" formaction="/get-events">
+        <input class="IBM-plex-serif-options" id="birth" type="submit" value="Births" formaction="/get-births">
+        <input class="IBM-plex-serif-options" id="death" type="submit" value="Deaths" formaction="/get-deaths">
+    </form>
+    <br/>
+    
+        <% if(locals.month) { %>
+            <h2>Results for <%= day %>.<%= month  %>.</h2>
+            <% if(locals.events){ %>
+                <div class="back-events">
+                <% for(var i = 0; i<events.length; i++) { %>
+                        <p class="year"> Year: <%= events[i].year %> </p> 
+                        <p class="description"> Event: <%= events[i].description %></p>
+                        <br/>
+                        <br/>
+                <% } %>
+                </div>
+            <%  }%>
+
+            <% if(locals.births){%>
+                <div class="back-births">
+                <% for(var i = 0; i<births.length; i++) { %>
+                        <p class="year"> Year: <%= births[i].year %> </p> 
+                        <p class="description"> Birth of <%= births[i].description %></p>
+                        <br/>
+                        <br/>
+                <% } %>
+                </div>    
+            <%  }%>
+
+            <% if(locals.deaths){%>
+                <div class="back-deaths">
+                <% for(var i = 0; i<deaths.length; i++) { %>
+                        <p class="year"> Year: <%= deaths[i].year %> </p> 
+                        <p class="description"> Death of <%= deaths[i].description %></p>
+                        <br/>
+                        <br/>
+                <% } %>
+                </div>
+            <%  }%>
+        <% } %>
+    </div>
+
+
+</body>
+</html>
