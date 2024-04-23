@@ -1,3 +1,5 @@
+Project using this public api: https://byabbe.se/on-this-day/ 
+
 After cloning:
 1. cd into the projects directory
 2. Install all packages: npm i
